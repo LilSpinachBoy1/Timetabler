@@ -9,8 +9,8 @@ DEFAULT_ADDR = r"ASSETS/Fonts/TiltNeon-Regular.ttf"  # NOTE: This is relative to
 # Class to create text
 class Text:
     # TAKES PARAMS:
-    # Text for screen, font size, position to draw to
-    # Optional params of font (address) and colour which will default to basic font in black
+    # Required: Text for screen, font size, position to draw to
+    # Optional: font (address) and colour which will default to basic font in black
     def __init__(self, text: str, size: int, pos: tuple, colour: tuple = (0, 0, 0), font_adr: str = DEFAULT_ADDR) -> None:
         # Create font obj
         self.fontObj = pygame.font.Font(font_adr, size)
@@ -26,5 +26,13 @@ class Text:
 
 # Class to create interactive buttons
 class Button:
-    def __init__(self, size: tuple, pos: tuple, ) -> None:
-        pass
+    # TAKES PARAMS:
+    # Required: position (x, y)
+    # Optional: width and height of button, background colour
+    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = (211, 83, 38)) -> None:
+        self.rect = pygame.Rect(pos[0], pos[1], size[0], size[1])
+        self.colour = colour
+        self.state = "normal"
+
+    def out(self, surface: pygame.Surface) -> None:
+        pygame.draw.rect(surface, self.colour, self.rect, border_radius=5)

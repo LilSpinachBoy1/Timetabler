@@ -17,7 +17,8 @@ from SCRIPTS import util
 pygame.init()
 
 # Constants
-BG_COLOUR = (199, 202, 255)  # Pastel light blue
+BG_COLOUR = (37, 150, 190)  # Light blue
+ACCENT_COLOUR = (211, 83, 38)  # Pastel light red
 WINDOW_HEIGHT = 600
 WINDOW_WIDTH = 500
 FPS = 60
@@ -41,6 +42,9 @@ class MainMenu:
         title_text = "Timetabler!"
         title_TXT = util.Text(title_text, 60, (100, 10))
 
+        # Create button elements
+        butt1 = util.Button((35, 150))
+
         # Game loop
         while login_running:
             # Get events for quitting
@@ -52,6 +56,7 @@ class MainMenu:
             # Render elements
             WINDOW.fill(BG_COLOUR)
             title_TXT.out(WINDOW)
+            butt1.out(WINDOW)
             pygame.display.update()
             fpsClock.tick(FPS)
 
