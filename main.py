@@ -25,16 +25,21 @@ FPS = 60
 # Setup window
 fpsClock = pygame.time.Clock()
 WINDOW = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption('Timetabler: Login')
+pygame.display.set_caption('Timetabler')
 
 
 # Class to manage menu scenes
 class MainMenu:
     def __init__(self):
-        self.scene = "login"
+        self.scene = "menu"
 
-    def login(self):
+    @staticmethod
+    def menu():
         login_running = True
+
+        # Create text elements
+        title_text = "Timetabler!"
+        title_TXT = util.Text(title_text, 60, (100, 10))
 
         # Game loop
         while login_running:
@@ -46,12 +51,15 @@ class MainMenu:
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
+            title_TXT.out(WINDOW)
             pygame.display.update()
             fpsClock.tick(FPS)
 
     def manager(self):
         while True:
-            if self.scene == "login": self.login()
+            if self.scene == "menu":
+                pygame.display.set_caption("Timetabler: Main Menu")
+                self.menu()
 
 
 # Create object of class and begin
