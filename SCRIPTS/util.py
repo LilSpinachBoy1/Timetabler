@@ -29,11 +29,28 @@ class Text:
 class Button:
     # TAKES PARAMS:
     # Required: position (x, y)
-    # Optional: width and height of button, background colour
-    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust) -> None:
+    # Optional: width and height of button, background colour, hover colour
+    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust, hover_colour: tuple = colourLib.rust_hover) -> None:
         self.rect = pygame.Rect(pos[0], pos[1], size[0], size[1])
-        self.colour = colour
+        self.boundX = (pos[0], pos[0] + size[0])
+        self.boundY = (pos[1], pos[1] + size[1])
+        self.current_colour = colour
+        self.def_colour = colour
+        self.hover_colour = hover_colour
         self.state = "normal"
 
+    def press_check(self, mouse_pos: tuple, mouse_pressed: bool) -> bool:
+        # Within bounds
+        if self.boundX[0] < mouse_pos[0] < self.boundX[1] and self.boundY[0] < mouse_pos[1] < self.boundY[1]:
+            # Is pressed?
+            if mouse_pressed:
+                return True  # Return true if mouse is pressed
+            else:
+                self.current_colour = self.hover_colour  # Change to hover colour if within bounds
+        else:
+            self.current_colour = self.def_colour  # Return to default colour if no criteria are met
+
+        return False
+
     def out(self, surface: pygame.Surface) -> None:
-        pygame.draw.rect(surface, self.colour, self.rect, border_radius=5)
+        pygame.draw.rect(surface, self.current_colour, self.rect, border_radius=5)
