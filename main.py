@@ -12,13 +12,13 @@ from pygame.locals import *
 
 # Local imports
 from SCRIPTS import util
+from SCRIPTS import colourLib
 
 # Initialise libraries where required
 pygame.init()
 
 # Constants
-BG_COLOUR = (37, 150, 190)  # Light blue
-ACCENT_COLOUR = (211, 83, 38)  # Pastel light red
+BG_COLOUR = colourLib.blue  # Light blue
 WINDOW_HEIGHT = 600
 WINDOW_WIDTH = 500
 FPS = 60

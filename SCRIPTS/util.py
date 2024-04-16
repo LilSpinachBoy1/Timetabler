@@ -2,6 +2,7 @@
 UTILITIES FOR APPLICATION
 """
 import pygame
+from SCRIPTS import colourLib
 
 DEFAULT_ADDR = r"ASSETS/Fonts/TiltNeon-Regular.ttf"  # NOTE: This is relative to the script it is run from, not here (who knows why)
 
@@ -29,7 +30,7 @@ class Button:
     # TAKES PARAMS:
     # Required: position (x, y)
     # Optional: width and height of button, background colour
-    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = (211, 83, 38)) -> None:
+    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust) -> None:
         self.rect = pygame.Rect(pos[0], pos[1], size[0], size[1])
         self.colour = colour
         self.state = "normal"
