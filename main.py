@@ -35,7 +35,6 @@ class MainMenu:
 
     def login(self):
         login_running = True
-        loginData = util.readLoginData()
 
         # Game loop
         while login_running:
@@ -44,10 +43,6 @@ class MainMenu:
                 if event.type == QUIT:  # If quit is pressed
                     pygame.quit()
                     sys.exit()
-
-            # Choose if password needs to be set
-            if loginData["loginCount"] == 0:
-                pass
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
