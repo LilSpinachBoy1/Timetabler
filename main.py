@@ -35,7 +35,11 @@ class MainMenu:
         self.scene = "menu"
 
     @staticmethod
-    def menu():
+    def quit():
+        pygame.quit()
+        sys.exit()
+
+    def menu(self):
         login_running = True
 
         # Create text elements
@@ -52,6 +56,10 @@ class MainMenu:
                 if event.type == QUIT:  # If quit is pressed
                     pygame.quit()
                     sys.exit()
+
+            mousePos = pygame.mouse.get_pos()
+            mousePressed = pygame.mouse.get_pressed()
+            butt1.press_check(mousePos, mousePressed[0], self.quit)
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
