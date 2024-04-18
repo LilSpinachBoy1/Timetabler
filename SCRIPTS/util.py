@@ -45,9 +45,11 @@ class Button:
         self.def_colour = colour
         self.hover_colour = hover_colour
         self.state = "normal"
+        self.hasText = False
 
     # Does this work? Who knows
     def add_text(self, text: str, size: int, font_adr: str = DEFAULT_ADDR, colour: tuple = (0, 0, 0)) -> None:
+        self.hasText = True
         self.fontObj = pygame.font.Font(font_adr, size)
         self.textSurface = self.fontObj.render(text, True, colour)
 
@@ -59,9 +61,6 @@ class Button:
         horizontal_offset = (boxWidth % 2) - (textWidth % 2)
         vertical_offset = (boxHeight % 2) - (textHeight % 2)
         self.centred_pos = (horizontal_offset, vertical_offset)
-
-    def draw_text(self, surface: pygame.Surface) -> None:
-        surface.blit(self.textSurface, self.centred_pos)
 
     def press_check(self, mouse_pos: tuple, mouse_pressed: bool, func_to_run) -> None:
         # Within bounds
@@ -76,3 +75,4 @@ class Button:
 
     def out(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, self.current_colour, self.rect, border_radius=5)
+        if self.hasText: surface.blit(self.textSurface, self.centred_pos)
