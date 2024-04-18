@@ -48,6 +48,7 @@ class MainMenu:
 
         # Create button elements
         butt1 = util.Button((35, 150))
+        butt1.add_text("Hello!", 30)
 
         # Game loop
         while login_running:
