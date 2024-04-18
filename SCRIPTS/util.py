@@ -32,6 +32,7 @@ class Button:
     # Optional: width and height of button, background colour, hover colour
     def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust, hover_colour: tuple = colourLib.rust_hover) -> None:
         # Add font options to shut up interpreter
+        self.centred_pos = None
         self.textRectObj = None
         self.textSurface = None
         self.fontObj = None
@@ -52,8 +53,15 @@ class Button:
 
         self.textRectObj = self.textSurface.get_rect()
 
+        # Calculation to find alignment to centre text
+        boxWidth, boxHeight = self.rect.width, self.rect.height
+        textWidth, textHeight = self.textRectObj.width, self.textRectObj.height
+        horizontal_offset = (boxWidth % 2) - (textWidth % 2)
+        vertical_offset = (boxHeight % 2) - (textHeight % 2)
+        self.centred_pos = (horizontal_offset, vertical_offset)
+
     def draw_text(self, surface: pygame.Surface) -> None:
-        surface.blit(self.textSurface, self.textRectObj)
+        surface.blit(self.textSurface, self.centred_pos)
 
     def press_check(self, mouse_pos: tuple, mouse_pressed: bool, func_to_run) -> None:
         # Within bounds
