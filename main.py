@@ -34,11 +34,17 @@ class MainMenu:
     def __init__(self):
         self.scene = "menu"
 
+    """
+    FUNCTIONS FOR BUTTONS TO EXECUTE
+    """
     @staticmethod
     def quit():
         pygame.quit()
         sys.exit()
 
+    """
+    THE MAIN MENU OF THE APPLICATION
+    """
     def menu(self):
         login_running = True
 
@@ -47,8 +53,8 @@ class MainMenu:
         title_TXT = util.Text(title_text, 60, (100, 10))
 
         # Create button elements
-        butt1 = util.Button((35, 150))
-        butt1.add_text("Hello!", 30)
+        quitButt = util.Button((35, 500))
+        quitButt.add_text("Quit", 30)
 
         # Game loop
         while login_running:
@@ -60,12 +66,12 @@ class MainMenu:
 
             mousePos = pygame.mouse.get_pos()
             mousePressed = pygame.mouse.get_pressed()
-            butt1.press_check(mousePos, mousePressed[0], self.quit)
+            quitButt.press_check(mousePos, mousePressed[0], self.quit)
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
             title_TXT.out(WINDOW)
-            butt1.out(WINDOW)
+            quitButt.out(WINDOW)
             pygame.display.update()
             fpsClock.tick(FPS)
 
