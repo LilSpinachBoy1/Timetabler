@@ -47,7 +47,6 @@ class Button:
         self.state = "normal"
         self.hasText = False
 
-    # Does this work? Who knows
     def add_text(self, text: str, size: int, font_adr: str = DEFAULT_ADDR, colour: tuple = (0, 0, 0)) -> None:
         self.hasText = True
         self.fontObj = pygame.font.Font(font_adr, size)
@@ -58,9 +57,9 @@ class Button:
         # Calculation to find alignment to centre text
         boxWidth, boxHeight = self.rect.width, self.rect.height
         textWidth, textHeight = self.textRectObj.width, self.textRectObj.height
-        horizontal_offset = (boxWidth % 2) - (textWidth % 2)
-        vertical_offset = (boxHeight % 2) - (textHeight % 2)
-        self.centred_pos = (horizontal_offset, vertical_offset)
+        horizontal_offset = (boxWidth // 2) - (textWidth // 2)
+        vertical_offset = (boxHeight // 2) - (textHeight // 2)
+        self.centred_pos = (self.rect.x + horizontal_offset, self.rect.y + vertical_offset)
 
     def press_check(self, mouse_pos: tuple, mouse_pressed: bool, func_to_run) -> None:
         # Within bounds
