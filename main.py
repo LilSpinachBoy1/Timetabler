@@ -13,6 +13,7 @@ from pygame.locals import *
 # Local imports
 from SCRIPTS import util
 from SCRIPTS import colourLib
+from SCRIPTS import Scenes as sc
 
 # Initialise libraries where required
 pygame.init()
@@ -50,7 +51,7 @@ class MainMenu:
 
         # Create text elements
         title_text = "Timetabler!"
-        title_TXT = util.Text(title_text, 60, (100, 10))
+        title_TXT = util.Text(title_text, 60, (100, 30))
 
         # Create button elements
         newButt = util.Button((35, 150))
@@ -59,7 +60,7 @@ class MainMenu:
         viewButt.add_text("View Timetable", 30)
         editButt = util.Button((35, 350))
         editButt.add_text("Edit Timetable", 30)
-        quitButt = util.Button((35, 500))
+        quitButt = util.Button((35, 475))
         quitButt.add_text("Quit", 30)
 
         buttArr = [newButt, viewButt, editButt, quitButt]  # Button array for rendering
@@ -89,6 +90,8 @@ class MainMenu:
             if self.scene == "menu":
                 pygame.display.set_caption("Timetabler: Main Menu")
                 self.menu()
+            if self.scene == "newTT":
+                pygame.display.set_caption("Timetabler: Timetable Creation")
 
 
 # Create object of class and begin
