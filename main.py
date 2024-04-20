@@ -53,8 +53,16 @@ class MainMenu:
         title_TXT = util.Text(title_text, 60, (100, 10))
 
         # Create button elements
+        newButt = util.Button((35, 150))
+        newButt.add_text("Create New Timetable", 30)
+        viewButt = util.Button((35, 250))
+        viewButt.add_text("View Timetable", 30)
+        editButt = util.Button((35, 350))
+        editButt.add_text("Edit Timetable", 30)
         quitButt = util.Button((35, 500))
         quitButt.add_text("Quit", 30)
+
+        buttArr = [newButt, viewButt, editButt, quitButt]  # Button array for rendering
 
         # Game loop
         while login_running:
@@ -71,7 +79,8 @@ class MainMenu:
             # Render elements
             WINDOW.fill(BG_COLOUR)
             title_TXT.out(WINDOW)
-            quitButt.out(WINDOW)
+            for butts in buttArr:
+                butts.out(WINDOW)
             pygame.display.update()
             fpsClock.tick(FPS)
 
