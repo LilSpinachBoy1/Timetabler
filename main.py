@@ -5,6 +5,7 @@ This is main.py, the initial file to run for the project, it will house initial 
 """
 
 # Library imports
+import os
 import sys
 import time
 import pygame
@@ -13,7 +14,7 @@ from pygame.locals import *
 # Local imports
 from SCRIPTS import util
 from SCRIPTS import colourLib
-from SCRIPTS import Scenes as sc
+from SCRIPTS.Scenes import createTT_scn
 
 # Initialise libraries where required
 pygame.init()
@@ -34,6 +35,7 @@ pygame.display.set_caption('Timetabler')
 class MainMenu:
     def __init__(self):
         self.scene = "menu"
+        self.login_running = None
 
     """
     FUNCTIONS FOR BUTTONS TO EXECUTE
@@ -43,11 +45,16 @@ class MainMenu:
         pygame.quit()
         sys.exit()
 
+    def newTT(self):
+        # self.login_running = False  LEFT COMMENTED TO ALLOW RETURN
+        createTT_scn.scene(WINDOW)
+
+
     """
     THE MAIN MENU OF THE APPLICATION
     """
     def menu(self):
-        login_running = True
+        self.login_running = True
 
         # Create text elements
         title_text = "Timetabler!"
@@ -66,7 +73,9 @@ class MainMenu:
         buttArr = [newButt, viewButt, editButt, quitButt]  # Button array for rendering
 
         # Game loop
-        while login_running:
+        while self.login_running:
+            # Set title
+            pygame.display.set_caption("Timetabler: Main Menu")
             # Get events for quitting
             for event in pygame.event.get():
                 if event.type == QUIT:  # If quit is pressed
@@ -76,6 +85,7 @@ class MainMenu:
             mousePos = pygame.mouse.get_pos()
             mousePressed = pygame.mouse.get_pressed()
             quitButt.press_check(mousePos, mousePressed[0], self.quit)
+            newButt.press_check(mousePos, mousePressed[0], self.newTT)
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
@@ -90,8 +100,6 @@ class MainMenu:
             if self.scene == "menu":
                 pygame.display.set_caption("Timetabler: Main Menu")
                 self.menu()
-            if self.scene == "newTT":
-                pygame.display.set_caption("Timetabler: Timetable Creation")
 
 
 # Create object of class and begin
