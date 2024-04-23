@@ -16,13 +16,15 @@ class Text:
         # Create font obj
         self.fontObj = pygame.font.Font(font_adr, size)
         self.textSurface = self.fontObj.render(text, True, colour)
+        self.textRect = self.textSurface.get_rect()
 
         # Store other details
-        self.position = pos
+        self.textRect.x = pos[0]
+        self.textRect.y = pos[1]
 
     # Function to be called to draw text to the screen
     def out(self, surface: pygame.Surface) -> None:
-        surface.blit(self.textSurface, self.position)
+        surface.blit(self.textSurface, self.textRect)
 
 
 # Class to create interactive buttons
@@ -74,4 +76,10 @@ class Button:
 
     def out(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, self.current_colour, self.rect, border_radius=5)
-        if self.hasText: surface.blit(self.textSurface, self.centred_pos)
+        if self.hasText:
+            surface.blit(self.textSurface, self.centred_pos)
+
+
+# Code for an input field class
+class InputField:
+    pass

@@ -5,7 +5,6 @@ This is main.py, the initial file to run for the project, it will house initial 
 """
 
 # Library imports
-import os
 import sys
 import time
 import pygame
@@ -40,19 +39,21 @@ class MainMenu:
     """
     FUNCTIONS FOR BUTTONS TO EXECUTE
     """
+
     @staticmethod
     def quit():
         pygame.quit()
         sys.exit()
 
-    def newTT(self):
+    @staticmethod
+    def new_tt():
         # self.login_running = False  LEFT COMMENTED TO ALLOW RETURN
         createTT_scn.scene(WINDOW)
-
 
     """
     THE MAIN MENU OF THE APPLICATION
     """
+
     def menu(self):
         self.login_running = True
 
@@ -85,7 +86,7 @@ class MainMenu:
             mousePos = pygame.mouse.get_pos()
             mousePressed = pygame.mouse.get_pressed()
             quitButt.press_check(mousePos, mousePressed[0], self.quit)
-            newButt.press_check(mousePos, mousePressed[0], self.newTT)
+            newButt.press_check(mousePos, mousePressed[0], self.new_tt)
 
             # Render elements
             WINDOW.fill(BG_COLOUR)
