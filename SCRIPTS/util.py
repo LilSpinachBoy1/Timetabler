@@ -2,7 +2,6 @@
 UTILITIES FOR APPLICATION
 """
 import pygame
-from pygame import surface
 
 from SCRIPTS import colourLib
 
@@ -99,6 +98,31 @@ class InputField:
         self.box_width = box_width
         self.pos_offset = self.textRect.width + 10
         self.text_box = pygame.Rect(pos[0] + self.pos_offset, pos[1], self.box_width, self.textRect.height)
+
+        # Focus checks / input box logic
+        self.isFocused = False
+        self.boxText = ""
+
+    # Check A: if box is focused, B: what text is entered
+    def check_inps(self):
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_pressed = pygame.mouse.get_pressed()
+
+        # MOUSE FOCUS CHECK
+        if self.text_box.x < mouse_pos[0] < (self.text_box.x + self.text_box.width):  # Check if in range X
+            if self.text_box.y < mouse_pos[1] < (self.text_box.y + self.text_box.height):  # Check if in range Y
+                # TOGGLE FOCUS
+                if mouse_pressed[0] and self.isFocused:
+                    self.isFocused = False
+                elif mouse_pressed[0] and not self.isFocused:
+                    self.isFocused = True
+
+        # ESCAPE KEYS
+        esc_keys = [pygame.K_ESCAPE, pygame.K_RETURN]
+        # Listen for key presses
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key not in esc_keys:
+                pass  # ADD WAY TO DETECT KEY AS STR
 
     def out(self, window: pygame.Surface) -> None:
         window.blit(self.textSurface, self.textRect)

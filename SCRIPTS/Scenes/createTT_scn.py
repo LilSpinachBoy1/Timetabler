@@ -29,6 +29,9 @@ def scene(screen: pygame.display):
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 running = False  # Return out a scene
 
+        # PROCESSING
+        ttNameInp.check_inps()
+
         screen.fill(colourLib.blue)
         ttNameInp.out(screen)
         title_text.out(screen)
