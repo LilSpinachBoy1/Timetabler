@@ -2,6 +2,8 @@
 UTILITIES FOR APPLICATION
 """
 import pygame
+from pygame import surface
+
 from SCRIPTS import colourLib
 
 DEFAULT_ADDR = r"ASSETS/Fonts/TiltNeon-Regular.ttf"  # NOTE: This is relative to the script it is run from, not here (who knows why)
@@ -82,4 +84,22 @@ class Button:
 
 # Code for an input field class
 class InputField:
-    pass
+    # This takes a gazilion params so listen up
+    # REQUIRED: Label (text to go with input), label size (text size), pos (position to draw to)
+    # OPTIONAL: text_colour (colour of label), font_adr (address of font to use), box_colour (duh), box_width (how wide, height is determined by text size)
+    def __init__(self, label: str, label_size: int, pos: tuple, text_colour: tuple = (0, 0, 0), font_adr: str = DEFAULT_ADDR, box_colour: tuple = (255, 255, 255), box_width: int = 200) -> None:
+        # Create text
+        self.fontObj = pygame.font.Font(font_adr, label_size)
+        self.textSurface = self.fontObj.render(label, True, text_colour)
+        self.textRect = self.textSurface.get_rect()
+        self.textRect.x, self.textRect.y = pos[0], pos[1]
+
+        # Create box
+        self.rectColour = box_colour
+        self.box_width = box_width
+        self.pos_offset = self.textRect.width + 10
+        self.text_box = pygame.Rect(pos[0] + self.pos_offset, pos[1], self.box_width, self.textRect.height)
+
+    def out(self, window: pygame.Surface) -> None:
+        window.blit(self.textSurface, self.textRect)
+        pygame.draw.rect(window, self.rectColour, self.text_box, border_radius=5)
