@@ -14,8 +14,8 @@ def scene(screen: pygame.display):
     running = True
 
     # Create page elements
-    title_text = util.Text("Create a new Timetable:", 25, (10, 10))
-    inp1 = util.InputField("Hello: ", 25, (10, 300))
+    title_text = util.Text("Create a new Timetable:", 35, (20, 10))
+    ttNameInp = util.InputField("Timetable Name: ", 25, (15, 75), box_width=260)
 
     # Game loop
     while running:
@@ -30,7 +30,7 @@ def scene(screen: pygame.display):
                 running = False  # Return out a scene
 
         screen.fill(colourLib.blue)
-        inp1.out(screen)
+        ttNameInp.out(screen)
         title_text.out(screen)
         pygame.display.update()
         tempClock.tick(60)
