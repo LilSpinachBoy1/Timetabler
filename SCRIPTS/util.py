@@ -6,6 +6,8 @@ import pygame
 from SCRIPTS import colourLib
 
 DEFAULT_ADDR = r"ASSETS/Fonts/TiltNeon-Regular.ttf"  # NOTE: This is relative to the script it is run from, not here (who knows why)
+# The worlds best endurance event
+# char_map = {pygame.K_a: ["a", "A"], pygame.K_b: ["b", "B"], pygame.K_c: ["c", "C"], pygame.K_d: ["d", "D"], pygame.K_e: ["e", "E"], pygame.K_f: ["f", "F"], pygame.K_g: ["g", "G"], pygame.K_h: ["h", "H"], pygame.K_i: ["i", "I"], pygame.K_j: }
 
 
 # Class to create text
