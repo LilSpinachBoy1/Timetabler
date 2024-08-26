@@ -7,7 +7,18 @@ from SCRIPTS import colourLib
 
 DEFAULT_ADDR = r"ASSETS/Fonts/TiltNeon-Regular.ttf"  # NOTE: This is relative to the script it is run from, not here (who knows why)
 # The worlds best endurance event
-# char_map = {pygame.K_a: ["a", "A"], pygame.K_b: ["b", "B"], pygame.K_c: ["c", "C"], pygame.K_d: ["d", "D"], pygame.K_e: ["e", "E"], pygame.K_f: ["f", "F"], pygame.K_g: ["g", "G"], pygame.K_h: ["h", "H"], pygame.K_i: ["i", "I"], pygame.K_j: }
+char_map = {
+            pygame.K_a: ["a", "A"], pygame.K_b: ["b", "B"], pygame.K_c: ["c", "C"], pygame.K_d: ["d", "D"],
+            pygame.K_e: ["e", "E"], pygame.K_f: ["f", "F"], pygame.K_g: ["g", "G"], pygame.K_h: ["h", "H"],
+            pygame.K_i: ["i", "I"], pygame.K_j: ["j", "J"], pygame.K_k: ["k", "K"], pygame.K_l: ["l", "L"],
+            pygame.K_m: ["m", "M"], pygame.K_n: ["n", "N"], pygame.K_o: ["o", "O"], pygame.K_p: ["p", "P"],
+            pygame.K_q: ["q", "Q"], pygame.K_r: ["r", "R"], pygame.K_s: ["s", "S"], pygame.K_t: ["t", "T"],
+            pygame.K_u: ["u", "U"], pygame.K_v: ["v", "V"], pygame.K_w: ["w", "W"], pygame.K_x: ["x", "X"],
+            pygame.K_y: ["y", "Y"], pygame.K_z: ["z", "Z"],
+            pygame.K_0: "0", pygame.K_1: "1", pygame.K_2: "2", pygame.K_3: "3", pygame.K_4: "4",
+            pygame.K_5: "5", pygame.K_6: "6", pygame.K_7: "7", pygame.K_8: "8", pygame.K_9: "9",
+            pygame.K_SPACE: " "
+            }
 
 
 # Class to create text
@@ -15,7 +26,8 @@ class Text:
     # TAKES PARAMS:
     # Required: Text for screen, font size, position to draw to
     # Optional: font (address) and colour which will default to basic font in black
-    def __init__(self, text: str, size: int, pos: tuple, colour: tuple = (0, 0, 0), font_adr: str = DEFAULT_ADDR) -> None:
+    def __init__(self, text: str, size: int, pos: tuple, colour: tuple = (0, 0, 0),
+                 font_adr: str = DEFAULT_ADDR) -> None:
         # Create font obj
         self.fontObj = pygame.font.Font(font_adr, size)
         self.textSurface = self.fontObj.render(text, True, colour)
@@ -35,7 +47,8 @@ class Button:
     # TAKES PARAMS:
     # Required: position (x, y)
     # Optional: width and height of button, background colour, hover colour
-    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust, hover_colour: tuple = colourLib.rust_hover) -> None:
+    def __init__(self, pos: tuple, size: tuple = (425, 85), colour: tuple = colourLib.rust,
+                 hover_colour: tuple = colourLib.rust_hover) -> None:
         # Add font options to shut up interpreter
         self.centred_pos = None
         self.textRectObj = None
@@ -88,7 +101,8 @@ class InputField:
     # This takes a gazilion params so listen up
     # REQUIRED: Label (text to go with input), label size (text size), pos (position to draw to)
     # OPTIONAL: text_colour (colour of label), font_adr (address of font to use), box_colour (duh), box_width (how wide, height is determined by text size)
-    def __init__(self, label: str, label_size: int, pos: tuple, text_colour: tuple = (0, 0, 0), font_adr: str = DEFAULT_ADDR, box_colour: tuple = (255, 255, 255), box_width: int = 200) -> None:
+    def __init__(self, label: str, label_size: int, pos: tuple, text_colour: tuple = (0, 0, 0),
+                 font_adr: str = DEFAULT_ADDR, box_colour: tuple = (255, 255, 255), box_width: int = 200) -> None:
         # Create text
         self.fontObj = pygame.font.Font(font_adr, label_size)
         self.textSurface = self.fontObj.render(label, True, text_colour)
